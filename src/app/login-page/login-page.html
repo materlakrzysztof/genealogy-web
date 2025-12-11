@@ -1,0 +1,40 @@
+<mat-card appearance="raised">
+	<mat-card-header>
+		<mat-card-title>{{ 'login.title' | translate }}</mat-card-title>
+		<mat-card-subtitle>{{ 'login.subtitle' | translate }}</mat-card-subtitle>
+	</mat-card-header>
+	<mat-card-content>
+		<div class="form-content">
+			<mat-form-field appearance="outline">
+				<mat-label>{{ 'login.username' | translate }}</mat-label>
+				<input matInput [formControl]="loginForm.controls.username" />
+				@if (loginForm.controls.username.invalid) {
+				<mat-error>{{ errorMessage().username }}</mat-error>
+				}
+			</mat-form-field>
+			<mat-form-field appearance="outline">
+				<mat-label>{{ 'login.password' | translate }}</mat-label>
+				<input
+					matInput
+					[type]="hidePassword() ? 'password' : 'text'"
+					[formControl]="loginForm.controls.password"
+				/>
+				<mat-icon matSuffix (click)="hidePassword.set(!hidePassword())">
+					{{ hidePassword() ? 'visibility_off' : 'visibility' }}
+				</mat-icon>
+				@if (loginForm.controls.password.invalid) {
+				<mat-error>{{ errorMessage().password }}</mat-error>
+				}
+			</mat-form-field>
+			@if(generalErrorMessage()) {
+			<mat-error>{{ generalErrorMessage() }}</mat-error>
+			}
+		</div>
+	</mat-card-content>
+	<mat-card-actions align="end">
+		<button matButton>{{ 'login.accessRequestButton' | translate }}</button>
+		<button matButton="filled" [disabled]="loginForm.invalid" (click)="login()">
+			{{ 'login.loginButton' | translate }}
+		</button>
+	</mat-card-actions>
+</mat-card>

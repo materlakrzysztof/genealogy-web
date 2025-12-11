@@ -1,0 +1,21 @@
+:host {
+  color: var(--mat-sys-on-primary);
+  background: var(--mat-sys-primary);
+  width: 100vw;
+
+  --mat-icon-color: var(--mat-sys-on-primary);
+  --mat-button-text-label-text-color: var(--mat-sys-on-primary);
+  nav {
+    background: var(--mat-sys-primary);
+    display: flex;
+
+    align-items: center;
+    padding: 0.5rem 1rem;
+    justify-content: space-between;
+
+	.left-menu, .right-menu {
+	  display: flex;
+	  align-items: center;
+	}
+  }
+}

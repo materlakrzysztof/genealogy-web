@@ -1,0 +1,20 @@
+{
+  "app": {
+    "hello": "hello {{value}}",
+    "title": "Translation Demo"
+  },
+  "login": {
+	"title": "Welcome Back",
+	"subtitle": "Please log in to your account",
+	"username": "Username",
+	"password": "Password",
+	"loginButton": "Log In",
+	"accessRequestButton": "Access Request"
+  },
+  "errors": {
+	"required": "This field is required",
+	"minlength": "This field must be at least {{requiredLength}} characters long",
+	"invalidCredentials": "Invalid username or password",
+	"serverError": "An unexpected error occurred. Please try again later."
+  }
+}

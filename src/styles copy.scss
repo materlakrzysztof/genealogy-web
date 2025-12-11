@@ -1,0 +1,78 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Użyj najbliższej gotowej palety
+$genealogy-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$green-palette,
+    tertiary: mat.$orange-palette,
+  ),
+  typography: (
+    brand-family: 'Playfair Display, serif',
+    plain-family: 'Lato, sans-serif',
+    bold-weight: 700,
+    medium-weight: 500,
+    regular-weight: 400,
+  ),
+  density: (
+    scale: 0,
+  )
+));
+
+@include mat.all-component-themes($genealogy-theme);
+
+// Nadpisz zmienne CSS swoimi kolorami
+:root {
+  --mat-app-background-color: #F9F7F2;
+  
+  // Nadpisanie primary colors
+  --mat-sys-primary: #2E5B48;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #c1cdc8;
+  --mat-sys-on-primary-container: #122f21;
+  
+  // Nadpisanie tertiary (accent) colors
+  --mat-sys-tertiary: #CFA76E;
+  --mat-sys-on-tertiary: rgba(0,0,0, 0.87);
+  --mat-sys-tertiary-container: #f1e4d3;
+  --mat-sys-on-tertiary-container: #2a1800;
+}
+
+// Globalne style
+body, html {
+  height: 100%;
+  margin: 0;
+  background-color: #F9F7F2;
+  color: #333333;
+  font-family: 'Lato', sans-serif;
+}
+
+.mat-drawer-container,
+.mat-sidenav-container {
+  background-color: #F9F7F2 !important;
+}
+
+.mat-mdc-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+mat-toolbar.mat-primary {
+  box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.text-serif {
+  font-family: 'Playfair Display', serif;
+}
+
+// Nadpisanie typografii dla nagłówków
+.mat-headline-large,
+.mat-headline-medium,
+.mat-headline-small,
+.mat-title-large,
+.mat-title-medium {
+  font-family: 'Playfair Display', serif !important;
+}

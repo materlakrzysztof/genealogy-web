@@ -1,1 +1,71 @@
-/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+@use './styles/_theme-colors' as custom-theme;
+
+@include mat.core();
+
+// Użyj najbliższej gotowej palety
+$genealogy-theme: mat.define-theme(
+  (
+    color: (
+      theme-type: light,
+      primary: custom-theme.$primary-palette,
+      tertiary: custom-theme.$tertiary-palette,
+    ),
+    typography: (
+      brand-family: 'Playfair Display, serif',
+      plain-family: 'Lato, sans-serif',
+      bold-weight: 700,
+      medium-weight: 500,
+      regular-weight: 400,
+    ),
+    density: (
+      scale: 0,
+    ),
+  )
+);
+
+@include mat.all-component-themes($genealogy-theme);
+
+// Nadpisz zmienne CSS swoimi kolorami
+:root {
+  --mat-app-background-color: #f9f7f2;
+
+  // Nadpisanie primary colors
+  --mat-sys-primary: #2e5b48;
+  --mat-sys-on-primary: #ffffff;
+  --mat-sys-primary-container: #c1cdc8;
+  --mat-sys-on-primary-container: #122f21;
+  --mat-sys-surface: #f9f7f2;
+  --mat-sys-on-surface: #333333;
+  --mat-sys-tertiary: #cfa76e;
+  --mat-sys-on-tertiary: rgba(0, 0, 0, 0.87);
+  --mat-sys-tertiary-container: #f1e4d3;
+  --mat-sys-on-tertiary-container: #2a1800;
+}
+
+
+body {
+  color-scheme: light;
+
+  background-color: var(--mat-sys-surface);
+  color: var(--mat-sys-on-surface);
+
+  margin: 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+}
+
+
+:root {
+  @include mat.card-overrides((
+    elevated-container-color: var(--mat-sys-on-primary),
+  ));
+}

@@ -1,0 +1,15 @@
+@use '../styles/_responsive' as responsive;
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @include responsive.respond-above(md) {
+    padding: 1rem;
+  }
+  @include responsive.respond-above(lg) {
+    width: 1284px;
+  }
+}
