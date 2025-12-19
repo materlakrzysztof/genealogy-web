@@ -8,6 +8,7 @@ import { provideTranslateService } from '@ngx-translate/core';
 import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CookieService } from 'ngx-cookie-service';
 import { baseUrlInterceptor } from './services/base-url-interceptor';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -24,5 +25,11 @@ export const appConfig: ApplicationConfig = {
 			}),
 		}),
 		CookieService,
+		provideNgxSkeletonLoader({
+			theme: {
+				extendsFromRoot: true,
+				height: '30px',
+			},
+		}),
 	],
 };
