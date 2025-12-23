@@ -29,6 +29,8 @@ export class Users implements OnInit {
 		});
 	}
 	ngOnInit(): void {
-		this.dispatch.loadUsers();
+		if (this.userStore.ids().length === 0) {
+			this.dispatch.loadUsers();
+		}
 	}
 }

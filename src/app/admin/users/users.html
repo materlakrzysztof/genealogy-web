@@ -3,7 +3,7 @@
 		@if (loading()) {
 		<p>Loading...</p>
 
-		<ngx-skeleton-loader count="5" appearance="square" size="100" />
+		<ngx-skeleton-loader count="5" appearance="line" size="100" />
 		} @else {
 		<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 			<ng-container matColumnDef="userName">

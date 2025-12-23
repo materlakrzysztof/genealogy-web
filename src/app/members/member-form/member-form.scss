@@ -1,12 +1,15 @@
 :host {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
 }
 
-
-.members-list {
+form {
 	display: flex;
 	flex-direction: column;
-	gap: 0.5rem;
+}
+
+.inline-fields {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
 }

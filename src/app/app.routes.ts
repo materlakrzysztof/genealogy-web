@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { loggedGuard } from './guards/logged-guard';
 import { UsersStore } from './store/users/users.store';
 import { UserApi } from './services/user-api';
+import { MembersApi } from './services/members-api';
+import { MembersStore } from './store/members/members.store';
 
 export const routes: Routes = [
 	{
@@ -12,20 +14,31 @@ export const routes: Routes = [
 		path: 'login',
 		loadComponent: () => import('./login-page/login-page').then((m) => m.LoginPage),
 	},
+
 	{
-		path: 'search',
+		path: 'members',
 		canActivate: [loggedGuard],
+		providers: [MembersStore, MembersApi],
 		loadComponent: () =>
 			import('./members/members-list/members-list').then((m) => m.MembersList),
 	},
 	{
-		path: 'view',
+		path: 'members/view-three',
 		canActivate: [loggedGuard],
+		providers: [MembersStore, MembersApi],
 		loadComponent: () =>
 			import('./members/members-three/members-three').then((m) => m.MembersThree),
 	},
 	{
-		path: 'member/:id',
+		path: 'members/add',
+		canActivate: [loggedGuard],
+		providers: [MembersStore, MembersApi],
+		loadComponent: () => import('./members/member-add/member-add').then((m) => m.MemberAdd),
+	},
+	{
+		path: 'members/:id',
+		canActivate: [loggedGuard],
+		providers: [MembersStore, MembersApi],
 		loadComponent: () =>
 			import('./members/members-details/members-details').then((m) => m.MembersDetails),
 	},

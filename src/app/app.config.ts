@@ -9,6 +9,9 @@ import { provideTranslateHttpLoader } from '@ngx-translate/http-loader';
 import { CookieService } from 'ngx-cookie-service';
 import { baseUrlInterceptor } from './services/base-url-interceptor';
 import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
+import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
+import { MAT_LUXON_DATE_ADAPTER_OPTIONS } from '@angular/material-luxon-adapter';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -31,5 +34,14 @@ export const appConfig: ApplicationConfig = {
 				height: '30px',
 			},
 		}),
+		{ provide: MAT_DATE_LOCALE, useValue: 'pl-PL' },
+		provideLuxonDateAdapter(),
+		{
+			provide: MAT_LUXON_DATE_ADAPTER_OPTIONS,
+			useValue: {
+				useUtc: true,
+				firstDayOfWeek: 1, // opcjonalnie: poniedziałek
+			},
+		},
 	],
 };

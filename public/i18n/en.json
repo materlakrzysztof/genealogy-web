@@ -11,6 +11,17 @@
 	"loginButton": "Log In",
 	"accessRequestButton": "Access Request"
   },
+  "member": {
+	"firstName": "First Name",
+	"lastName": "Last Name",
+	"maidenName": "Maiden Name",
+	"birthDate": "Birth Date",
+	"birthPlace": "Birth Place",
+	"deathDate": "Death Date",
+	"deathPlace": "Death Place",
+	"gender": "Gender",
+	"notes": "Notes"
+  },
   "errors": {
 	"required": "This field is required",
 	"minlength": "This field must be at least {{requiredLength}} characters long",
