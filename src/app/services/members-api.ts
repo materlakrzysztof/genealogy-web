@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Member, MemberData } from '../store/members/member';
+import { Member, MemberData, MemberSimple } from '../store/members/member';
+import { of } from 'rxjs';
 
 @Injectable()
 export class MembersApi {
@@ -8,7 +9,7 @@ export class MembersApi {
 
 	fetchMembers(term: string = '') {
 		const params = new HttpParams().set('term', term);
-		return this.http.get<Member[]>(`/api/members`, { params });
+		return this.http.get<MemberSimple[]>(`/api/members`, { params });
 	}
 
 	createMember(member: MemberData) {
@@ -17,5 +18,9 @@ export class MembersApi {
 
 	updateMember(member: Member) {
 		return this.http.put<Member>(`/api/members/${member.id}`, member);
+	}
+
+	removeMember(memberId: number) {
+		return this.http.delete<any>(`/api/members/${memberId}`);
 	}
 }

@@ -19,8 +19,14 @@ export const routes: Routes = [
 		path: 'members',
 		canActivate: [loggedGuard],
 		providers: [MembersStore, MembersApi],
-		loadComponent: () =>
-			import('./members/members-list/members-list').then((m) => m.MembersList),
+		loadComponent: () => import('./members/members/members').then((m) => m.Members),
+		children: [
+			{
+				path: '',
+				loadComponent: () =>
+					import('./members/members-list/members-list').then((m) => m.MembersList),
+			},
+		],
 	},
 	{
 		path: 'members/view-three',

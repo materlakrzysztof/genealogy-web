@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -10,6 +10,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { membersEvents } from '../../store/members/members.events';
 import { injectDispatch } from '@ngrx/signals/events';
 import { MembersStore } from '../../store/members/members.store';
+import { Member, MemberData } from '../../store/members/member';
 
 @Component({
 	selector: 'gen-member-form',
@@ -29,6 +30,10 @@ export class MemberForm {
 	
 	private readonly membersStore = inject(MembersStore);
 	private readonly dispatch = injectDispatch(membersEvents);
+	processing = this.membersStore.processingMember;
+
+	formData = input<MemberData>();
+	saveClicked = output<MemberData>();
 
 	protected readonly memberForm = new FormGroup({
 		firstName: new FormControl('', [Validators.required]),
@@ -43,16 +48,18 @@ export class MemberForm {
 	});
 
 	save(): void {
-		this.membersStore.createMember({
-			firstName: this.memberForm.value.firstName!,
-			lastName: this.memberForm.value.lastName!,
-			maidenName: this.memberForm.value.maidenName ?? null,
-			birthDate: this.memberForm.value.birthDate ?? null,
-			birthPlace: this.memberForm.value.birthPlace ?? null,
-			deathDate: this.memberForm.value.deathDate ?? null,
-			deathPlace: this.memberForm.value.deathPlace ?? null,
-			gender: this.memberForm.value.gender!,
-			notes: this.memberForm.value.notes ?? null
-		});
+
+		this.saveClicked.emit(this.memberForm.value as MemberData);
+		// this.membersStore.createMember({
+		// 	firstName: this.memberForm.value.firstName!,
+		// 	lastName: this.memberForm.value.lastName!,
+		// 	maidenName: this.memberForm.value.maidenName ?? null,
+		// 	birthDate: this.memberForm.value.birthDate ?? null,
+		// 	birthPlace: this.memberForm.value.birthPlace ?? null,
+		// 	deathDate: this.memberForm.value.deathDate ?? null,
+		// 	deathPlace: this.memberForm.value.deathPlace ?? null,
+		// 	gender: this.memberForm.value.gender!,
+		// 	notes: this.memberForm.value.notes ?? null
+		// });
 	}
 }

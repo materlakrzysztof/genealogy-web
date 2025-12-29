@@ -12,6 +12,8 @@ import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { MAT_LUXON_DATE_ADAPTER_OPTIONS } from '@angular/material-luxon-adapter';
+import { API_URL } from './services/api-url.token';
+import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -43,5 +45,10 @@ export const appConfig: ApplicationConfig = {
 				firstDayOfWeek: 1, // opcjonalnie: poniedziałek
 			},
 		},
+		{ provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'shortDate' } },
+		// {
+		// 	provide: API_URL,
+		// 	useValue: 'https://genealogy-api-10q9.onrender.com',
+		// },
 	],
 };

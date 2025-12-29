@@ -51,7 +51,7 @@
 	</mat-form-field>
 </form>
 <div>
-	<button matButton="filled" [disabled]="memberForm.invalid" (click)="save()">
+	<button matButton="filled" [disabled]="memberForm.invalid || processing()" (click)="save()" >
 		{{ 'member.save' | translate }}
 	</button>
 </div>

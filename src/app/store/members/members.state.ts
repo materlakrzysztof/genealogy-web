@@ -1,10 +1,13 @@
+export type ActionType = 'view' | 'edit' | null;
+
 export type MembersState = {
 	loading: boolean;
 	term: string;
 	page: number;
 	pageSize: number;
 	processingMember: boolean;
-	editedMemberId: number | null;
+	memberId: number | null;
+	actionType: ActionType;
 };
 
 
@@ -14,5 +17,6 @@ export const initialState: MembersState = {
 	page: 1,
 	pageSize: 10,
 	processingMember: false,
-	editedMemberId: null,
+	memberId: null,
+	actionType: null
 };

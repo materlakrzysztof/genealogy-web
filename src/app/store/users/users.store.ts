@@ -12,7 +12,7 @@ export const UsersStore = signalStore(
 	withState(initialState),
 	withEntities<User>(),
 	withReducer(
-		on(usersEvents.loadUsers, (state) => ({ ...state, loading: true })),
+		on(usersEvents.loadUsers, (event, state) => ({ ...state, loading: true })),
 	),
 
 	withEventHandlers((store, events = inject(Events), userApi = inject(UserApi)) => ({

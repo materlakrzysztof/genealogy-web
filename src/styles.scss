@@ -2,6 +2,8 @@
 
 @use './styles/_theme-colors' as custom-theme;
 
+@use './styles/_responsive' as responsive;
+
 @include mat.core();
 
 // Użyj najbliższej gotowej palety
@@ -62,6 +64,22 @@ body {
 	font-family: 'Lato', sans-serif;
 }
 
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  padding: 1rem;
+
+  @include responsive.respond-above(md) {
+    padding: 1rem;
+  }
+  @include responsive.respond-above(lg) {
+    width: 1284px;
+  }
+}
+
+
 :root {
 	@include mat.card-overrides(
 		(
@@ -73,6 +91,12 @@ body {
 		(
 			header-headline-weight: 600,
 			background-color: var(--mat-sys-on-primary),
+		)
+	);
+
+	@include mat.sidenav-overrides(
+		(
+			container-shape: 0,
 		)
 	);
 }

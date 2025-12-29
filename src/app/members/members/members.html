@@ -1,0 +1,24 @@
+<mat-drawer-container class="example-container" autosize>
+	<mat-drawer #drawer class="example-sidenav" mode="over" disableClose>
+		<div class="drawer-header">
+			<h3>
+				@if(actionType() === 'edit') { @if(memberId()) { Edit Member } @else { Add New
+				Member } } @else { TODO: View Member Details }
+			</h3>
+			<button type="button" matIconButton aria-label="Close sidenav" (click)="closeDrawer()">
+				<mat-icon>close</mat-icon>
+			</button>
+		</div>
+
+		<div class="drawer-content">
+			<gen-member-form></gen-member-form>
+		</div>
+	</mat-drawer>
+
+	<div class="container">
+		<div class="example-sidenav-content">
+			<button type="button" matButton (click)="drawer.toggle()">Toggle sidenav</button>
+		</div>
+		<router-outlet></router-outlet>
+	</div>
+</mat-drawer-container>
