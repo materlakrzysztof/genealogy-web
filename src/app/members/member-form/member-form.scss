@@ -1,0 +1,15 @@
+:host {
+	display: flex;
+	flex-direction: column;
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+}
+
+.inline-fields {
+	display: flex;
+	flex-direction: row;
+	gap: 1rem;
+}

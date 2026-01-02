@@ -1,0 +1,39 @@
+:host {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+.members-list-header {
+	display: flex;
+	justify-content: stretch;
+	align-items: start;
+	gap: 1rem;
+	width: 100%;
+	mat-form-field {
+		width: 100%;
+	}
+}
+.members-list {
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+}
+mat-card-content {
+	display: flex;
+	justify-content: space-between;
+	.mdc-button {
+		justify-content: start !important;
+	}
+	.member-info {
+		display: flex;
+		flex-direction: column;
+		gap: 0.25rem;
+		h3,
+		p {
+			margin: 0;
+		}
+		p {
+			padding: 0 var(--mat-button-text-horizontal-padding);
+		}
+	}
+}

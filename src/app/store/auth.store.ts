@@ -84,7 +84,7 @@ export const AuthStore = signalStore(
 							},
 						})
 					)
-				),
+				)
 			),
 			logout$: events.on(authEvents.logout).pipe(
 				tap(() => {
@@ -94,14 +94,17 @@ export const AuthStore = signalStore(
 		})
 	),
 	withHooks({
-		onInit(
-			store,
-			cookie = inject(CookieService),
-			dispatch = injectDispatch(authEvents)
-		) {
+		onInit(store, cookie = inject(CookieService), dispatch = injectDispatch(authEvents)) {
 			const token = cookie.get(cookieName);
 			if (token) {
-				dispatch.setToken(token);
+				const decoded = jwtDecode<{ exp: number }>(token);
+				const expireDate = new Date(decoded.exp * 1000);
+				if (new Date() > expireDate) {
+					cookie.delete(cookieName);
+					return;
+				} else {
+					dispatch.setToken(token);
+				}
 			}
 		},
 	})

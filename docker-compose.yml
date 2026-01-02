@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  page:
+    build: .
+    ports:
+      - "4200:80"
+    environment:
+      NODE_ENV: "Development"

@@ -1,1 +1,64 @@
-<p>members-list works!</p>
+<div class="members-list-header">
+	<mat-form-field class="example-form-field">
+		<mat-label>Search</mat-label>
+		<input matInput type="text" [(ngModel)]="searchTerm" (keyup.enter)="search()" />
+		<button matSuffix matIconButton aria-label="Clear" (click)="search()">
+			<mat-icon>search</mat-icon>
+		</button>
+	</mat-form-field>
+	<button matFab (click)="addNew()">
+		<mat-icon>person_add</mat-icon>
+	</button>
+</div>
+
+@if (loading()) {
+
+<ngx-skeleton-loader count="5" appearance="line" size="100" />
+} @else {
+<div class="members-list">
+	@for (member of members(); track member.id) {
+
+	<mat-card appearance="raised">
+		<mat-card-content>
+			<div class="member-info">
+				<a matButton [routerLink]="'/members/' + member.id">
+					<h3>
+						{{ member.firstName }} {{ member.lastName }} @if (member.maidenName) { ({{
+							member.maidenName
+						}}) }
+					</h3>
+				</a>
+
+				<p>
+					Born: {{ member.birthDate | date }} @if (member.deathDate) { - Died:
+					{{ member.deathDate | date }} }
+				</p>
+			</div>
+			<div class="member-actions">
+				<button
+					matIconButton
+					[matMenuTriggerFor]="menu"
+					aria-label="Example icon-button with a menu"
+				>
+					<mat-icon>more_vert</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu">
+					<button mat-menu-item [routerLink]="'/members/' + member.id">
+						<mat-icon>read_more</mat-icon>
+						<span>View Details</span>
+					</button>
+					<button mat-menu-item (click)="editMember(member.id)">
+						<mat-icon>edit</mat-icon>
+						<span>Edit</span>
+					</button>
+					<button mat-menu-item (click)="removeMember(member.id)">
+						<mat-icon>delete</mat-icon>
+						<span>Remove</span>
+					</button>
+				</mat-menu>
+			</div>
+		</mat-card-content>
+	</mat-card>
+	}
+</div>
+}
