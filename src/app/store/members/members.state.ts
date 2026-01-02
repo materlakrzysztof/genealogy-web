@@ -1,3 +1,5 @@
+import { Member } from "./member";
+
 export type ActionType = 'view' | 'edit' | null;
 
 export type MembersState = {
@@ -8,6 +10,7 @@ export type MembersState = {
 	processingMember: boolean;
 	memberId: number | null;
 	actionType: ActionType;
+	member: Member | null;
 };
 
 
@@ -18,5 +21,6 @@ export const initialState: MembersState = {
 	pageSize: 10,
 	processingMember: false,
 	memberId: null,
-	actionType: null
+	actionType: null,
+	member: null
 };

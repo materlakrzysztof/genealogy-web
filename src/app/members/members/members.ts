@@ -5,6 +5,7 @@ import { MatDrawer, MatSidenavModule } from '@angular/material/sidenav';
 import { RouterOutlet } from '@angular/router';
 import { MemberForm } from '../member-form/member-form';
 import { MembersStore } from '../../store/members/members.store';
+import { MemberData } from '../../store/members/member';
 
 @Component({
 	selector: 'gen-members',
@@ -15,6 +16,7 @@ import { MembersStore } from '../../store/members/members.store';
 export class Members {
 	private readonly store = inject(MembersStore);
 	protected actionType = this.store.actionType;
+	protected member = this.store.member;
 	protected memberId = this.store.memberId;
 	drawer = viewChild<MatDrawer>('drawer');
 
@@ -35,5 +37,11 @@ export class Members {
 	closeDrawer(): void {
 		this.store.resetActionType();
 		this.drawer()?.close();
+	}
+
+	saveMember(event: MemberData): void {
+		this.store.saveMember(event).subscribe(() => {
+			this.closeDrawer();
+		});
 	}
 }

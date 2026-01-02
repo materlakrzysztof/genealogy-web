@@ -1,7 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Member, MemberData, MemberSimple } from '../store/members/member';
-import { of } from 'rxjs';
 
 @Injectable()
 export class MembersApi {
@@ -17,7 +16,11 @@ export class MembersApi {
 	}
 
 	updateMember(member: Member) {
-		return this.http.put<Member>(`/api/members/${member.id}`, member);
+		return this.http.patch<Member>(`/api/members/${member.id}`, member);
+	}
+
+	getMember(memberId: number) {
+		return this.http.get<Member>(`/api/members/${memberId}`);
 	}
 
 	removeMember(memberId: number) {

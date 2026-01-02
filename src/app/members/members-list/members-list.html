@@ -47,7 +47,7 @@
 						<mat-icon>read_more</mat-icon>
 						<span>View Details</span>
 					</button>
-					<button mat-menu-item [routerLink]="'/members/' + member.id + '/edit'">
+					<button mat-menu-item (click)="editMember(member.id)">
 						<mat-icon>edit</mat-icon>
 						<span>Edit</span>
 					</button>

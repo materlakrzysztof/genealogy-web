@@ -11,14 +11,11 @@
 		</div>
 
 		<div class="drawer-content">
-			<gen-member-form></gen-member-form>
+			<gen-member-form [formData]="member()" (saveClicked)="saveMember($event)"></gen-member-form>
 		</div>
 	</mat-drawer>
 
 	<div class="container">
-		<div class="example-sidenav-content">
-			<button type="button" matButton (click)="drawer.toggle()">Toggle sidenav</button>
-		</div>
 		<router-outlet></router-outlet>
 	</div>
 </mat-drawer-container>

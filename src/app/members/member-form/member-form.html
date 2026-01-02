@@ -11,6 +11,13 @@
 		<mat-label>{{ 'member.maidenName' | translate }}</mat-label>
 		<input matInput [formControl]="memberForm.controls.maidenName" />
 	</mat-form-field>
+	<div>
+      <label>Float label: </label>
+      <mat-radio-group [formControl]="memberForm.controls.gender">
+        <mat-radio-button [value]="0">{{'Male' | translate}}</mat-radio-button>
+        <mat-radio-button [value]="1">{{'Female' | translate}}</mat-radio-button>
+      </mat-radio-group>
+    </div>
 	<div class="inline-fields">
 		<mat-form-field appearance="outline">
 			<mat-label>{{ 'member.birthDate' | translate }}</mat-label>
@@ -51,7 +58,7 @@
 	</mat-form-field>
 </form>
 <div>
-	<button matButton="filled" [disabled]="memberForm.invalid || processing()" (click)="save()" >
+	<button matButton="filled" [disabled]="processing()" (click)="save()" >
 		{{ 'member.save' | translate }}
 	</button>
 </div>
