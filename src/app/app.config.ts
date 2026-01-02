@@ -1,4 +1,4 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners } from '@angular/core';
+import { ApplicationConfig, makeStateKey, PLATFORM_ID, provideBrowserGlobalErrorListeners, TransferState } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -13,7 +13,7 @@ import { MAT_DATE_LOCALE } from '@angular/material/core';
 import { provideLuxonDateAdapter } from '@angular/material-luxon-adapter';
 import { MAT_LUXON_DATE_ADAPTER_OPTIONS } from '@angular/material-luxon-adapter';
 import { API_URL } from './services/api-url.token';
-import { DATE_PIPE_DEFAULT_OPTIONS } from '@angular/common';
+import { DATE_PIPE_DEFAULT_OPTIONS, isPlatformBrowser } from '@angular/common';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
@@ -46,6 +46,21 @@ export const appConfig: ApplicationConfig = {
 			},
 		},
 		{ provide: DATE_PIPE_DEFAULT_OPTIONS, useValue: { dateFormat: 'shortDate' } },
+		{
+			provide: API_URL,
+			useFactory:	(state: TransferState, platformId: Object) => {
+				const key = makeStateKey<string>('API_URL');
+				if(isPlatformBrowser(platformId)) {
+					const apiUrlFromState = state.get<string>(key, ''); 
+					return apiUrlFromState;
+				} else {
+					const apiUrlFromEnv = process.env['API_URL'] || '';
+					state.set<string>(key, apiUrlFromEnv);
+					return apiUrlFromEnv;
+				}
+			},
+			deps: [TransferState, PLATFORM_ID],
+		},
 		// {
 		// 	provide: API_URL,
 		// 	useValue: 'https://genealogy-api-10q9.onrender.com',
